@@ -24,3 +24,5 @@ doc/api/
 .pub-cache/
 .pub/
 .vscode/
+
+.DS_Store

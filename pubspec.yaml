@@ -1,0 +1,22 @@
+name: dart_kenall
+description: Unofficially Kenall API Client.
+version: 1.0.0
+homepage: https://kenall.jp
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  ansicolor: ^2.0.1
+  args: ^2.1.0
+  http: ^0.13.3
+  meta: ^1.3.0
+
+dev_dependencies:
+  pedantic: ^1.10.0
+  test: ^1.17.10
+  mockito: ^5.0.12
+  build_runner: ^2.0.6
+
+executables:
+  kenall-cli:

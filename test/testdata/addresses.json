@@ -1,0 +1,27 @@
+{
+  "version": "2021-06-30",
+  "data": [
+    {
+      "jisx0402": "13101",
+      "old_code": "100",
+      "postal_code": "1000001",
+      "prefecture_kana": "トウキョウト",
+      "city_kana": "チヨダク",
+      "town_kana": "チヨダ",
+      "town_kana_raw": "チヨダ",
+      "prefecture": "東京都",
+      "city": "千代田区",
+      "town": "千代田",
+      "koaza": "",
+      "kyoto_street": "",
+      "building": "",
+      "floor": "",
+      "town_partial": false,
+      "town_addressed_koaza": false,
+      "town_chome": false,
+      "town_multi": false,
+      "town_raw": "千代田",
+      "corporation": null
+    }
+  ]
+}

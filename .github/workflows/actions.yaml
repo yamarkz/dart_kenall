@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+    paths: ['**.dart', 'pubspec.*', 'analysis_options.yaml', '.github/workflows/dart_ci.yaml']
+  pull_request:
+    paths: ['**.dart', 'pubspec.*', 'analysis_options.yaml', '.github/workflows/dart_ci.yaml']
+
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: dart-lang/setup-dart@v1
+      with:
+        sdk: beta
+    - name: Install dependencies
+      run: dart pub get
+    - name: Analyze project source
+      run: dart analyze --fatal-infos --fatal-warnings .
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: beta
+      - name: Install dependencies
+        run: dart pub get
+      - name: Run tests
+        run: dart pub run test .
