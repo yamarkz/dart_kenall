@@ -1,5 +1,10 @@
 # dart_kenall 🦈
 
+[![CI](https://github.com/yamarkz/dart_kenall/actions/workflows/actions.yaml/badge.svg)](https://github.com/yamarkz/dart_kenall/actions/workflows/actions.yaml)
+[![likes](https://badges.bar/dart_kenall/likes)](https://pub.dev/packages/dart_kenall/score)
+[![popularity](https://badges.bar/dart_kenall/popularity)](https://pub.dev/packages/dart_kenall/score)
+[![pub points](https://badges.bar/dart_kenall/pub%20points)](https://pub.dev/packages/dart_kenall/score)
+
 Unofficial kenall ([ケンオール](https://kenall.jp)) client written by Dart.
 
 Kenall is the useful Japanese postal code API service.
@@ -52,10 +57,12 @@ address: {jisx0402: 13113, old_code: 150, postal_code: 1500001, prefecture: 東�
 
 ### Flutter
 
-Example app is [here]().
+Example app is [here](https://github.com/yamarkz/kenall_example_flutter).
 
-
+| Get Address  |  Search Address  | Get City |
+| ---- | ---- | ---- |
+| <img src="https://user-images.githubusercontent.com/12509392/128193779-699bee88-9c82-42c7-866e-8febb98dac00.png" width="270"> |  <img src="https://user-images.githubusercontent.com/12509392/128194006-0fe17637-2d00-4a8a-859a-e7b500ec0082.png" width="270">  | <img src="https://user-images.githubusercontent.com/12509392/128195236-6b601c2c-accb-4568-a4a6-b160ec141c47.png" width="270">  |
 
 ## License
 
-[MIT License]().
+[MIT License](https://github.com/yamarkz/dart_kenall/blob/main/LICENSE).
