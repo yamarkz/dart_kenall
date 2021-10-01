@@ -21,9 +21,11 @@ Recommended that you use it for simple applications.
 
 - [ ] `GET /v1/download/postalcode`
 - [x] `GET /v1/postalcode/{郵便番号}`
-- [x] `GET /postalcode/?q=...&offset=...&limit=...&facet=...`
-- [x] `GET /cities/:都道府県コード`
-- [x] `GET /whoami`
+- [x] `GET /v1/postalcode/?q=...&offset=...&limit=...&facet=...`
+- [x] `GET /v1/cities/:都道府県コード`
+- [x] `GET /v1/whoami`
+- [x] `GET /v1/houjinbangou/{法人番号}`
+- [x] `GET /v1/houjinbangou/?q=...&offset=...&limit=...&facet=...`
 
 ## Usage
 
