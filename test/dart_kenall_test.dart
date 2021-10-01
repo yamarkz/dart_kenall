@@ -225,13 +225,96 @@ void main() {
         }, returnsNormally);
       });
 
-      test('response object is valid', () async {});
+      test('response object is valid', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json =
+              await File('./testdata/houjinbangou.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        final response =
+            await kenallClient!.getHoujinbangou(houjinbangou: '2021001052596');
+        expect(response.version, '2021-08-20');
+        expect(response.houjinbangou.corporateNumber, '2021001052596');
+        expect(response.houjinbangou.process, '12');
+      });
+
+      test('throw Exception if invalid params', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          return http.Response('{}', HttpStatus.notFound, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        try {
+          await kenallClient!.getHoujinbangou(houjinbangou: 'dummy');
+        } catch (error) {
+          expect(
+            error.toString(),
+            'Kenall Error: 404 not found | uri: http://api.example.com/v1/houjinbangou/dummy',
+          );
+        }
+      });
     });
 
     group('searchHoujinbangou', () {
-      test('returns normally', () async {});
+      test('returns normally', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json =
+              await File('./testdata/search_houjinbangous.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
 
-      test('response object is valid', () async {});
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        expect(() async {
+          await kenallClient!.searchHoujinbangou(query: 'dummy');
+        }, returnsNormally);
+      });
+
+      test('response object is valid', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json =
+              await File('./testdata/search_houjinbangous.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        final response = await kenallClient!.searchHoujinbangou(query: 'dummy');
+        expect(response.version, '2021-08-20');
+        expect(response.houjinbangous[0].corporateNumber, '2021001052596');
+        expect(response.houjinbangous[0].process, '12');
+      });
+
+      test('throw Exception if invalid params', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          return http.Response('{}', HttpStatus.notFound, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        try {
+          await kenallClient!.searchHoujinbangou(query: 'dummy');
+        } catch (error) {
+          expect(
+            error.toString(),
+            'Kenall Error: 404 not found | uri: http://api.example.com/v1/houjinbangou/?q=dummy&offset=0&limit=50&facet=',
+          );
+        }
+      });
     });
   });
 }
