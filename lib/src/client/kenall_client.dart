@@ -4,6 +4,7 @@ import 'package:dart_kenall/src/client/config.dart';
 import 'package:dart_kenall/src/response/get_address_response.dart';
 import 'package:dart_kenall/src/response/get_cities_response.dart';
 import 'package:dart_kenall/src/client/http_client.dart';
+import 'package:dart_kenall/src/response/get_houjinbangou_response.dart';
 import 'package:dart_kenall/src/response/get_whoami_response.dart';
 import 'package:dart_kenall/src/response/search_address_response.dart';
 import 'package:http/http.dart' as http;
@@ -53,5 +54,13 @@ class KenallClient {
     final response = await _httpClient.send('/whoami');
     final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
     return GetWhoamiResponse.fromJson(jsonMap);
+  }
+
+  Future<GetHoujinBangouResponse> getHoujinbangou({
+    required String houjinbangou,
+  }) async {
+    final response = await _httpClient.send('/houjinbangou/$houjinbangou');
+    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
+    return GetHoujinBangouResponse.fromJson(jsonMap);
   }
 }
