@@ -209,7 +209,21 @@ void main() {
     });
 
     group('getHoujinbangou', () {
-      test('returns normally', () async {});
+      test('returns normally', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json =
+              await File('./testdata/houjinbangou.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        expect(() async {
+          await kenallClient!.getHoujinbangou(houjinbangou: '2021001052596');
+        }, returnsNormally);
+      });
 
       test('response object is valid', () async {});
     });
