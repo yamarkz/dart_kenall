@@ -207,5 +207,17 @@ void main() {
         expect(response.address, '0.0.0.0');
       });
     });
+
+    group('getHoujinbangou', () {
+      test('returns normally', () async {});
+
+      test('response object is valid', () async {});
+    });
+
+    group('searchHoujinbangou', () {
+      test('returns normally', () async {});
+
+      test('response object is valid', () async {});
+    });
   });
 }
