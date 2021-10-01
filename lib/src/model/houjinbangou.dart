@@ -94,4 +94,38 @@ class Houjinbangou {
       hihyoji: json['hihyoji'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'published_date': publishedDate,
+      'sequence_number': sequenceNumber,
+      'corporate_number': corporateNumber,
+      'process': process,
+      'correct': correct,
+      'update_date': updateDate,
+      'change_date': changeDate,
+      'name': name,
+      'name_image_id': nameImageId,
+      'kind': kind,
+      'prefecture_name': prefectureName,
+      'city_name': cityName,
+      'street_number': streetNumber,
+      'address_image_id': addressImageId,
+      'jisx0402': jisx0402,
+      'post_code': postCode,
+      'address_outside': addressOutside,
+      'address_outside_image_id': addressOutsideImageId,
+      'close_date': closeDate,
+      'close_cause': closeCause,
+      'successor_corporate_number': successorCorporateNumber,
+      'change_cause': changeCause,
+      'assignment_date': assignmentDate,
+      'en_name': enName,
+      'en_prefecture_name': enPrefectureName,
+      'en_address_line': enAddressLine,
+      'en_address_outside': enAddressOutside,
+      'furigana': furigana,
+      'hihyoji': hihyoji,
+    };
+  }
 }
