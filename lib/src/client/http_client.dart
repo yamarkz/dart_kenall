@@ -26,6 +26,8 @@ class HttpClient {
           return response;
         case HttpStatus.unauthorized:
           throw KenallException(uri, '401 unauthorized');
+        case HttpStatus.paymentRequired:
+          throw KenallException(uri, '402 payment required');
         case HttpStatus.forbidden:
           throw KenallException(uri, '403 forbidden');
         case HttpStatus.notFound:
