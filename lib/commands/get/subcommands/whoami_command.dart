@@ -22,8 +22,8 @@ class WhoamiCommand extends Command {
     final kenallClient = KenallClient(config, http.Client());
     try {
       final response = await kenallClient.getWhoami();
-      printInfo('type: ${response.type}');
-      printInfo('address: ${response.address}');
+      printInfo('type: ${response.remoteAddr.type}');
+      printInfo('address: ${response.remoteAddr.address}');
       exit(0);
     } catch (error) {
       printErrorAndExit('--- $error ---');

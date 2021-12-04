@@ -1,5 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'package:dart_kenall/src/model/corporation.dart';
 
+part 'address.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake,
+  includeIfNull: true,
+  explicitToJson: true,
+  checked: true,
+)
 class Address {
   final String jisx0402;
   final String oldCode;
@@ -45,55 +55,8 @@ class Address {
     required this.corporation,
   });
 
-  factory Address.fromJson(Map<String, dynamic> json) {
-    return Address(
-      jisx0402: json['jisx0402'] as String,
-      oldCode: json['old_code'] as String,
-      postalCode: json['postal_code'] as String,
-      prefecture: json['prefecture'] as String,
-      prefectureKana: json['prefecture_kana'] as String,
-      city: json['city'] as String,
-      cityKana: json['city_kana'] as String,
-      town: json['town'] as String,
-      townKana: json['town_kana'] as String,
-      townRaw: json['town_raw'] as String,
-      townKanaRaw: json['town_kana_raw'] as String,
-      koaza: json['koaza'] as String,
-      kyotoStreet: json['kyoto_street'] as String,
-      building: json['building'] as String,
-      floor: json['floor'] as String,
-      townPartial: json['town_partial'] as bool,
-      townAddressedKoaza: json['town_addressed_koaza'] as bool,
-      townMulti: json['town_multi'] as bool,
-      townChome: json['town_chome'] as bool,
-      corporation: json['corporation'] != null
-          ? Corporation.fromJson(json['corporation'])
-          : null,
-    );
-  }
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'jisx0402': jisx0402,
-      'old_code': oldCode,
-      'postal_code': postalCode,
-      'prefecture': prefecture,
-      'prefecture_kana': prefectureKana,
-      'city': city,
-      'city_kana': cityKana,
-      'town': town,
-      'town_kana': townKana,
-      'town_raw': townRaw,
-      'town_kana_raw': townKanaRaw,
-      'koaza': koaza,
-      'kyoto_street': kyotoStreet,
-      'building': building,
-      'floor': floor,
-      'town_partial': townPartial,
-      'town_addressed_koaza': townAddressedKoaza,
-      'town_multi': townMulti,
-      'town_chome': townChome,
-      'corporation': corporation != null ? corporation!.toJson() : null,
-    };
-  }
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
 }

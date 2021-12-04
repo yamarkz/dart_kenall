@@ -203,8 +203,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         final response = await kenallClient!.getWhoami();
-        expect(response.type, 'v4');
-        expect(response.address, '0.0.0.0');
+        expect(response.remoteAddr.type, 'v4');
+        expect(response.remoteAddr.address, '0.0.0.0');
       });
     });
 

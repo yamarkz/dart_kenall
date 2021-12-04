@@ -1,14 +1,24 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'package:dart_kenall/src/model/houjinbangou.dart';
 
-class SearchHoujinbangou {
+part 'search_houjinbangou_response.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+  checked: true,
+)
+class SearchHoujinbangouResponse {
   final String version;
   final String query;
   final int count;
   final int offset;
   final int limit;
+  @JsonKey(name: 'data')
   final List<Houjinbangou> houjinbangous;
 
-  const SearchHoujinbangou({
+  const SearchHoujinbangouResponse({
     required this.version,
     required this.query,
     required this.count,
@@ -17,15 +27,8 @@ class SearchHoujinbangou {
     required this.houjinbangous,
   });
 
-  factory SearchHoujinbangou.fromJson(Map<String, dynamic> json) {
-    final data = json['data'] as List<dynamic>;
-    return SearchHoujinbangou(
-      version: json['version'] as String,
-      query: json['query'] as String,
-      count: json['count'] as int,
-      offset: json['offset'] as int,
-      limit: json['limit'] as int,
-      houjinbangous: data.map((data) => Houjinbangou.fromJson(data)).toList(),
-    );
-  }
+  factory SearchHoujinbangouResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchHoujinbangouResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchHoujinbangouResponseToJson(this);
 }
