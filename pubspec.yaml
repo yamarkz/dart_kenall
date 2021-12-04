@@ -8,16 +8,16 @@ environment:
 
 dependencies:
   ansicolor: ^2.0.1
-  args: ^2.1.0
-  http: ^0.13.3
-  meta: ^1.3.0
+  args: ^2.3.0
+  http: ^0.13.4
+  meta: ^1.7.0
   json_serializable: ^6.1.1
 
 dev_dependencies:
-  pedantic: ^1.10.0
-  test: ^1.17.10
-  mockito: ^5.0.12
-  build_runner: ^2.0.6
+  pedantic: ^1.11.1
+  test: ^1.19.5
+  mockito: ^5.0.16
+  build_runner: ^2.1.5
 
 executables:
   kenall-cli:
