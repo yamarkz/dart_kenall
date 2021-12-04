@@ -65,7 +65,7 @@ class KenallClient {
     return GetHoujinBangouResponse.fromJson(jsonMap);
   }
 
-  Future<SearchHoujinbangou> searchHoujinbangou({
+  Future<SearchHoujinbangouResponse> searchHoujinbangou({
     required String query,
     int offset = 0,
     int limit = 50,
@@ -75,6 +75,6 @@ class KenallClient {
       '/houjinbangou/?q=$query&offset=$offset&limit=$limit&facet=$facet',
     );
     final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return SearchHoujinbangou.fromJson(jsonMap);
+    return SearchHoujinbangouResponse.fromJson(jsonMap);
   }
 }

@@ -1,3 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'corporation.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake,
+  checked: true,
+)
 class Corporation {
   final String name;
   final String nameKana;
@@ -13,23 +21,8 @@ class Corporation {
     required this.codeType,
   });
 
-  factory Corporation.fromJson(Map<String, dynamic> json) {
-    return Corporation(
-      name: json['name'] as String,
-      nameKana: json['name_kana'] as String,
-      blockLot: json['block_lot'] as String,
-      postOffice: json['post_office'] as String,
-      codeType: json['code_type'] as int,
-    );
-  }
+  factory Corporation.fromJson(Map<String, dynamic> json) =>
+      _$CorporationFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'name': name,
-      'name_kana': nameKana,
-      'block_lot': blockLot,
-      'post_office': postOffice,
-      'code_type': codeType,
-    };
-  }
+  Map<String, dynamic> toJson() => _$CorporationToJson(this);
 }

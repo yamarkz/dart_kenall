@@ -1,16 +1,22 @@
+import 'package:dart_kenall/src/model/remote_addr.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'get_whoami_response.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+  checked: true,
+)
 class GetWhoamiResponse {
-  final String type;
-  final String address;
+  final RemoteAddr remoteAddr;
 
   const GetWhoamiResponse({
-    required this.type,
-    required this.address,
+    required this.remoteAddr,
   });
 
-  factory GetWhoamiResponse.fromJson(Map<String, dynamic> json) {
-    return GetWhoamiResponse(
-      type: json['remote_addr']['type'] as String,
-      address: json['remote_addr']['address'] as String,
-    );
-  }
+  factory GetWhoamiResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetWhoamiResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GetWhoamiResponseToJson(this);
 }
