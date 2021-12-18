@@ -1,9 +1,9 @@
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
 import 'package:args/command_runner.dart';
 import 'package:dart_kenall/dart_kenall.dart';
 import 'package:dart_kenall/src/utils/io.dart';
-import 'package:http/http.dart' as http;
 
 class WhoamiCommand extends Command {
   @override
@@ -21,7 +21,7 @@ class WhoamiCommand extends Command {
     final config = Config(apiKey: apiKey!);
     final kenallClient = KenallClient(config, http.Client());
     try {
-      final response = await kenallClient.getWhoami();
+      final response = await kenallClient.getWhoami(GetWhoamiRequest());
       printInfo('type: ${response.remoteAddr.type}');
       printInfo('address: ${response.remoteAddr.address}');
       exit(0);

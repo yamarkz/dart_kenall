@@ -1,15 +1,20 @@
-import 'dart:convert';
+import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:dart_kenall/src/client/config.dart';
+import 'package:dart_kenall/src/client/http_client.dart';
+import 'package:dart_kenall/src/request/get_address_request.dart';
+import 'package:dart_kenall/src/request/get_cities_request.dart';
+import 'package:dart_kenall/src/request/get_houjinbangou_request.dart';
+import 'package:dart_kenall/src/request/get_whoami_request.dart';
+import 'package:dart_kenall/src/request/search_address_request.dart';
+import 'package:dart_kenall/src/request/search_houjinbangou_request.dart';
 import 'package:dart_kenall/src/response/get_address_response.dart';
 import 'package:dart_kenall/src/response/get_cities_response.dart';
-import 'package:dart_kenall/src/client/http_client.dart';
 import 'package:dart_kenall/src/response/get_houjinbangou_response.dart';
 import 'package:dart_kenall/src/response/get_whoami_response.dart';
 import 'package:dart_kenall/src/response/search_address_response.dart';
 import 'package:dart_kenall/src/response/search_houjinbangou_response.dart';
-import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 
 class KenallClient {
   final Config config;
@@ -20,61 +25,37 @@ class KenallClient {
     http.Client baseClient,
   ) : _httpClient = HttpClient(config, baseClient);
 
-  Future<GetAddressResponse> getAddress({
-    required String postalCode,
-  }) async {
-    final response = await _httpClient.send('/postalcode/$postalCode');
-    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return GetAddressResponse.fromJson(jsonMap);
+  Future<GetAddressResponse> getAddress(GetAddressRequest request) async {
+    final json = await _httpClient.send(request);
+    return GetAddressResponse.fromJson(json);
   }
 
   @experimental
-  Future<SearchAddressResponse> searchAddress({
-    required String query,
-    int offset = 0,
-    int limit = 50,
-    String facet = '',
-  }) async {
-    final response = await _httpClient.send(
-      '/postalcode/?q=$query&offset=$offset&limit=$limit&facet=$facet',
-      isBeta: true,
-    );
-    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return SearchAddressResponse.fromJson(jsonMap);
+  Future<SearchAddressResponse> searchAddress(
+      SearchAddressRequest request) async {
+    final json = await _httpClient.send(request);
+    return SearchAddressResponse.fromJson(json);
   }
 
-  Future<GetCitiesResponse> getCities({
-    required String prefectureCode,
-  }) async {
-    final response = await _httpClient.send('/cities/$prefectureCode');
-    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return GetCitiesResponse.fromJson(jsonMap);
+  Future<GetCitiesResponse> getCities(GetCitiesRequest request) async {
+    final json = await _httpClient.send(request);
+    return GetCitiesResponse.fromJson(json);
   }
 
-  Future<GetWhoamiResponse> getWhoami() async {
-    final response = await _httpClient.send('/whoami');
-    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return GetWhoamiResponse.fromJson(jsonMap);
+  Future<GetWhoamiResponse> getWhoami(GetWhoamiRequest request) async {
+    final json = await _httpClient.send(request);
+    return GetWhoamiResponse.fromJson(json);
   }
 
-  Future<GetHoujinBangouResponse> getHoujinbangou({
-    required String houjinbangou,
-  }) async {
-    final response = await _httpClient.send('/houjinbangou/$houjinbangou');
-    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return GetHoujinBangouResponse.fromJson(jsonMap);
+  Future<GetHoujinBangouResponse> getHoujinbangou(
+      GetHoujinBangouRequest request) async {
+    final json = await _httpClient.send(request);
+    return GetHoujinBangouResponse.fromJson(json);
   }
 
-  Future<SearchHoujinbangouResponse> searchHoujinbangou({
-    required String query,
-    int offset = 0,
-    int limit = 50,
-    String facet = '',
-  }) async {
-    final response = await _httpClient.send(
-      '/houjinbangou/?q=$query&offset=$offset&limit=$limit&facet=$facet',
-    );
-    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
-    return SearchHoujinbangouResponse.fromJson(jsonMap);
+  Future<SearchHoujinbangouResponse> searchHoujinbangou(
+      SearchHoujinbangouRequest request) async {
+    final json = await _httpClient.send(request);
+    return SearchHoujinbangouResponse.fromJson(json);
   }
 }

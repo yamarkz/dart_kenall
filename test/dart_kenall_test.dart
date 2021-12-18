@@ -1,5 +1,11 @@
 import 'dart:io';
 
+import 'package:dart_kenall/src/request/get_address_request.dart';
+import 'package:dart_kenall/src/request/get_cities_request.dart';
+import 'package:dart_kenall/src/request/get_houjinbangou_request.dart';
+import 'package:dart_kenall/src/request/get_whoami_request.dart';
+import 'package:dart_kenall/src/request/search_address_request.dart';
+import 'package:dart_kenall/src/request/search_houjinbangou_request.dart';
 import 'package:http/testing.dart';
 import 'package:mockito/annotations.dart';
 import 'package:test/expect.dart';
@@ -30,7 +36,9 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         expect(() async {
-          await kenallClient!.getAddress(postalCode: 'dummy');
+          await kenallClient!.getAddress(
+            GetAddressRequest(postalCode: 'dummy'),
+          );
         }, returnsNormally);
       });
 
@@ -44,7 +52,9 @@ void main() {
 
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
-        final response = await kenallClient!.getAddress(postalCode: 'dummy');
+        final response = await kenallClient!.getAddress(
+          GetAddressRequest(postalCode: 'dummy'),
+        );
         expect(response.addresses.length, 1);
         expect(response.version, '2021-06-30');
         expect(response.addresses[0].jisx0402, '13101');
@@ -60,7 +70,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         try {
-          await kenallClient!.getAddress(postalCode: 'dummy');
+          await kenallClient!
+              .getAddress(GetAddressRequest(postalCode: 'dummy'));
         } catch (error) {
           expect(
             error.toString(),
@@ -83,7 +94,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         expect(() async {
-          await kenallClient!.searchAddress(query: 'dummy');
+          await kenallClient!
+              .searchAddress(SearchAddressRequest(query: 'dummy'));
         }, returnsNormally);
       });
 
@@ -98,7 +110,8 @@ void main() {
 
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
-        final response = await kenallClient!.searchAddress(query: 'dummy');
+        final response = await kenallClient!
+            .searchAddress(SearchAddressRequest(query: 'dummy'));
         expect(response.addresses.length, 3);
         expect(response.version, '2021-06-30');
         expect(response.addresses[0].jisx0402, '14131');
@@ -114,7 +127,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         try {
-          await kenallClient!.searchAddress(query: 'dummy');
+          await kenallClient!
+              .searchAddress(SearchAddressRequest(query: 'dummy'));
         } catch (error) {
           expect(
             error.toString(),
@@ -136,7 +150,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         expect(() async {
-          await kenallClient!.getCities(prefectureCode: 'dummy');
+          await kenallClient!
+              .getCities(GetCitiesRequest(prefectureCode: 'dummy'));
         }, returnsNormally);
       });
 
@@ -150,7 +165,8 @@ void main() {
 
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
-        final response = await kenallClient!.getCities(prefectureCode: 'dummy');
+        final response = await kenallClient!
+            .getCities(GetCitiesRequest(prefectureCode: 'dummy'));
         expect(response.cities.length, 62);
         expect(response.version, '2021-06-30');
         expect(response.cities[0].jisx0402, '13101');
@@ -166,7 +182,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         try {
-          await kenallClient!.getCities(prefectureCode: 'dummy');
+          await kenallClient!
+              .getCities(GetCitiesRequest(prefectureCode: 'dummy'));
         } catch (error) {
           expect(
             error.toString(),
@@ -188,7 +205,7 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         expect(() async {
-          await kenallClient!.getWhoami();
+          await kenallClient!.getWhoami(GetWhoamiRequest());
         }, returnsNormally);
       });
 
@@ -202,7 +219,7 @@ void main() {
 
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
-        final response = await kenallClient!.getWhoami();
+        final response = await kenallClient!.getWhoami(GetWhoamiRequest());
         expect(response.remoteAddr.type, 'v4');
         expect(response.remoteAddr.address, '0.0.0.0');
       });
@@ -221,7 +238,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         expect(() async {
-          await kenallClient!.getHoujinbangou(houjinbangou: '2021001052596');
+          await kenallClient!.getHoujinbangou(
+              GetHoujinBangouRequest(houjinbangou: '2021001052596'));
         }, returnsNormally);
       });
 
@@ -236,8 +254,8 @@ void main() {
 
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
-        final response =
-            await kenallClient!.getHoujinbangou(houjinbangou: '2021001052596');
+        final response = await kenallClient!.getHoujinbangou(
+            GetHoujinBangouRequest(houjinbangou: '2021001052596'));
         expect(response.version, '2021-08-20');
         expect(response.houjinbangou.corporateNumber, '2021001052596');
         expect(response.houjinbangou.process, '12');
@@ -253,7 +271,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         try {
-          await kenallClient!.getHoujinbangou(houjinbangou: 'dummy');
+          await kenallClient!
+              .getHoujinbangou(GetHoujinBangouRequest(houjinbangou: 'dummy'));
         } catch (error) {
           expect(
             error.toString(),
@@ -276,7 +295,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         expect(() async {
-          await kenallClient!.searchHoujinbangou(query: 'dummy');
+          await kenallClient!
+              .searchHoujinbangou(SearchHoujinbangouRequest(query: 'dummy'));
         }, returnsNormally);
       });
 
@@ -291,7 +311,8 @@ void main() {
 
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
-        final response = await kenallClient!.searchHoujinbangou(query: 'dummy');
+        final response = await kenallClient!
+            .searchHoujinbangou(SearchHoujinbangouRequest(query: 'dummy'));
         expect(response.version, '2021-08-20');
         expect(response.houjinbangous[0].corporateNumber, '2021001052596');
         expect(response.houjinbangous[0].process, '12');
@@ -307,7 +328,8 @@ void main() {
         kenallClient = KenallClient(config, MockClient(httpResponse));
 
         try {
-          await kenallClient!.searchHoujinbangou(query: 'dummy');
+          await kenallClient!
+              .searchHoujinbangou(SearchHoujinbangouRequest(query: 'dummy'));
         } catch (error) {
           expect(
             error.toString(),
