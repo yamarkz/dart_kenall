@@ -18,11 +18,13 @@ class HttpClient {
     final method = request.method.toLowerCase();
     final endpoint = request.isBeta ? config.endpointBeta : config.endpoint;
     final uri = Uri.parse(endpoint + request.path);
+    final queryParameters =
+        request.parameters.isEmpty ? null : request.parameters;
     printInfo('send request to $uri');
     switch (method) {
       case 'get':
         response = await baseClient.get(
-          Uri.https(uri.host, uri.path, request.parameters),
+          Uri.https(uri.host, uri.path, queryParameters),
           headers: _headers,
         );
         break;

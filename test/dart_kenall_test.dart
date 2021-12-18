@@ -1,11 +1,5 @@
 import 'dart:io';
 
-import 'package:dart_kenall/src/request/get_address_request.dart';
-import 'package:dart_kenall/src/request/get_cities_request.dart';
-import 'package:dart_kenall/src/request/get_houjinbangou_request.dart';
-import 'package:dart_kenall/src/request/get_whoami_request.dart';
-import 'package:dart_kenall/src/request/search_address_request.dart';
-import 'package:dart_kenall/src/request/search_houjinbangou_request.dart';
 import 'package:http/testing.dart';
 import 'package:mockito/annotations.dart';
 import 'package:test/expect.dart';
@@ -19,8 +13,8 @@ void main() {
 
   final config = Config(
     apiKey: 'dummyKey',
-    endpoint: 'http://api.example.com/v1',
-    endpointBeta: 'http://api-beta.example.com/v1',
+    endpoint: 'https://api.example.com/v1',
+    endpointBeta: 'https://api-beta.example.com/v1',
   );
 
   group('KenallClient', () {
@@ -75,7 +69,7 @@ void main() {
         } catch (error) {
           expect(
             error.toString(),
-            'Kenall Error: 404 not found | uri: http://api.example.com/v1/postalcode/dummy',
+            'Kenall Error: 404 not found | uri: https://api.example.com/v1/postalcode/dummy',
           );
         }
       });
@@ -132,7 +126,7 @@ void main() {
         } catch (error) {
           expect(
             error.toString(),
-            'Kenall Error: 404 not found | uri: http://api-beta.example.com/v1/postalcode/?q=dummy&offset=0&limit=50&facet=',
+            'Kenall Error: 404 not found | uri: https://api-beta.example.com/v1/postalcode/?q=dummy&offset=0&limit=50&facet',
           );
         }
       });
@@ -187,7 +181,7 @@ void main() {
         } catch (error) {
           expect(
             error.toString(),
-            'Kenall Error: 404 not found | uri: http://api.example.com/v1/cities/dummy',
+            'Kenall Error: 404 not found | uri: https://api.example.com/v1/cities/dummy',
           );
         }
       });
@@ -276,7 +270,7 @@ void main() {
         } catch (error) {
           expect(
             error.toString(),
-            'Kenall Error: 404 not found | uri: http://api.example.com/v1/houjinbangou/dummy',
+            'Kenall Error: 404 not found | uri: https://api.example.com/v1/houjinbangou/dummy',
           );
         }
       });
@@ -333,7 +327,7 @@ void main() {
         } catch (error) {
           expect(
             error.toString(),
-            'Kenall Error: 404 not found | uri: http://api.example.com/v1/houjinbangou/?q=dummy&offset=0&limit=50&facet=',
+            'Kenall Error: 404 not found | uri: https://api.example.com/v1/houjinbangou?q=dummy&offset=0&limit=50&facet',
           );
         }
       });
