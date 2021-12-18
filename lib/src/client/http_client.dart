@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:http/http.dart';
 import 'package:dart_kenall/src/client/config.dart';
 import 'package:dart_kenall/src/client/kenall_exception.dart';
+import 'package:dart_kenall/src/request/request_base.dart';
 import 'package:dart_kenall/src/utils/io.dart';
-import 'package:http/http.dart';
 
 class HttpClient {
   final Config config;
@@ -11,38 +13,35 @@ class HttpClient {
 
   HttpClient(this.config, this.baseClient);
 
-  Future<Response> send(
-    String path, {
-    bool isBeta = false,
-  }) async {
-    final endpoint = isBeta ? config.endpointBeta : config.endpoint;
-    final uri = endpoint + path;
+  Future<Map<String, dynamic>> send(RequestBase request) async {
+    late Response response;
+    final method = request.method.toLowerCase();
+    final endpoint = request.isBeta ? config.endpointBeta : config.endpoint;
+    final uri = Uri.parse(endpoint + request.path);
+    final queryParameters =
+        request.parameters.isEmpty ? null : request.parameters;
     printInfo('send request to $uri');
-    final response = await baseClient
-        .get(Uri.parse(uri), headers: _headers)
-        .then((response) {
-      switch (response.statusCode) {
-        case HttpStatus.ok:
-          return response;
-        case HttpStatus.unauthorized:
-          throw KenallException(uri, '401 unauthorized');
-        case HttpStatus.paymentRequired:
-          throw KenallException(uri, '402 payment required');
-        case HttpStatus.forbidden:
-          throw KenallException(uri, '403 forbidden');
-        case HttpStatus.notFound:
-          throw KenallException(uri, '404 not found');
-        case HttpStatus.methodNotAllowed:
-          throw KenallException(uri, '405 method not allowed');
-        case HttpStatus.internalServerError:
-          throw KenallException(uri, '500 internal server');
-        case HttpStatus.badGateway:
-          throw KenallException(uri, '502 bad gateway');
-        default:
-          throw KenallException(uri, '${response.statusCode} not registered');
-      }
-    });
-    return response;
+    switch (method) {
+      case 'get':
+        response = await baseClient.get(
+          Uri.https(uri.host, uri.path, queryParameters),
+          headers: _headers,
+        );
+        break;
+      case 'post':
+      case 'put':
+      case 'delete':
+        throw Exception('unsupport method: $method');
+      default:
+        throw Exception('unexpected method: $method');
+    }
+
+    if (response.statusCode != HttpStatus.ok) {
+      throw KenallException.fromHttpResponse(response);
+    }
+
+    final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
+    return jsonMap;
   }
 
   Map<String, String> get _headers => {

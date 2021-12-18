@@ -1,9 +1,9 @@
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
 import 'package:args/command_runner.dart';
 import 'package:dart_kenall/dart_kenall.dart';
 import 'package:dart_kenall/src/utils/io.dart';
-import 'package:http/http.dart' as http;
 
 class CitiesCommand extends Command {
   CitiesCommand() {
@@ -37,8 +37,9 @@ class CitiesCommand extends Command {
     final config = Config(apiKey: apiKey!);
     final kenallClient = KenallClient(config, http.Client());
     try {
-      final response =
-          await kenallClient.getCities(prefectureCode: prefectureCode);
+      final response = await kenallClient.getCities(
+        GetCitiesRequest(prefectureCode: prefectureCode),
+      );
       printInfo('version: ${response.version}');
       printInfo('city count: ${response.cities.length}');
       response.cities.forEach((city) {
