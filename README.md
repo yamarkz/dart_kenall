@@ -40,7 +40,7 @@ Future<void> main() async {
   );
   final kenallClient = KenallClient(config, http.Client());
   final response = await kenallClient.getCities(
-    prefectureCode: prefectureCode['東京都']!,
+    GetCitiesRequest(prefectureCode: prefectureCode['東京都']!),
   );
   print(response.cities[0].toJson());
   // => {jisx0402: 13101, prefecture_code: 13, city_code: 101, prefecture_kana: トウキョウト, city_kana: チヨダク, prefecture: 東京都, city: 千代田区}
@@ -55,6 +55,40 @@ $> kenall-cli get postalcode --code=1500001
 send request to https://api.kenall.jp/v1/postalcode/1500001
 city count: 1
 address: {jisx0402: 13113, old_code: 150, postal_code: 1500001, prefecture: 東京都, prefecture_kana: トウキョウト, city: 渋谷区, city_kana: シブヤク, town: 神宮前, town_kana: ジングウマエ, town_raw: 神宮前, town_kana_raw: ジングウマエ, koaza: , kyoto_street: , building: , floor: , town_partial: false, town_addressed_koaza: false, town_multi: false, town_chome: true, corporation: null}
+```
+
+### Curl
+
+```console
+$> curl -H "Authorization: Token YOUR_API_KEY" \                                                                                                                              (git)-[playground-refactor]
+$> https://api.kenall.jp/v1/postalcode/1500001
+{
+  "version": "2021-11-30",
+  "data": [
+    {
+      "jisx0402": "13113",
+      "old_code": "150",
+      "postal_code": "1500001",
+      "prefecture_kana": "トウキョウト",
+      "city_kana": "シブヤク",
+      "town_kana": "ジングウマエ",
+      "town_kana_raw": "ジングウマエ",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "town": "神宮前",
+      "koaza": "",
+      "kyoto_street": "",
+      "building": "",
+      "floor": "",
+      "town_partial": false,
+      "town_addressed_koaza": false,
+      "town_chome": true,
+      "town_multi": false,
+      "town_raw": "神宮前",
+      "corporation": null
+    }
+  ]
+}
 ```
 
 ### Flutter
