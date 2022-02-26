@@ -10,6 +10,7 @@ class Corporation {
   final String name;
   final String nameKana;
   final String blockLot;
+  final String? blockLotNum;
   final String postOffice;
   final int codeType;
 
@@ -17,6 +18,7 @@ class Corporation {
     required this.name,
     required this.nameKana,
     required this.blockLot,
+    required this.blockLotNum,
     required this.postOffice,
     required this.codeType,
   });

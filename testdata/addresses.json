@@ -1,17 +1,17 @@
 {
-  "version": "2021-06-30",
+  "version": "2022-01-31",
   "data": [
     {
-      "jisx0402": "13101",
-      "old_code": "100",
-      "postal_code": "1000001",
-      "prefecture_kana": "トウキョウト",
-      "city_kana": "チヨダク",
-      "town_kana": "チヨダ",
-      "town_kana_raw": "チヨダ",
+      "jisx0402": "13104",
+      "old_code": "16001",
+      "postal_code": "1638001",
+      "prefecture_kana": "",
+      "city_kana": "",
+      "town_kana": "",
+      "town_kana_raw": "",
       "prefecture": "東京都",
-      "city": "千代田区",
-      "town": "千代田",
+      "city": "新宿区",
+      "town": "西新宿",
       "koaza": "",
       "kyoto_street": "",
       "building": "",
@@ -20,8 +20,15 @@
       "town_addressed_koaza": false,
       "town_chome": false,
       "town_multi": false,
-      "town_raw": "千代田",
-      "corporation": null
+      "town_raw": "西新宿",
+      "corporation": {
+        "name": "東京都庁",
+        "name_kana": "トウキヨウトチヨウ",
+        "block_lot": "２丁目８－１",
+        "block_lot_num": "2-8-1",
+        "post_office": "新宿",
+        "code_type": 0
+      }
     }
   ]
 }

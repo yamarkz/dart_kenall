@@ -50,8 +50,8 @@ void main() {
           GetAddressRequest(postalCode: 'dummy'),
         );
         expect(response.addresses.length, 1);
-        expect(response.version, '2021-06-30');
-        expect(response.addresses[0].jisx0402, '13101');
+        expect(response.version, '2022-01-31');
+        expect(response.addresses[0].jisx0402, '13104');
       });
 
       test('throw Exception if invalid params', () async {
