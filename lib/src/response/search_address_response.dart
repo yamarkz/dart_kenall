@@ -1,3 +1,4 @@
+import 'package:dart_kenall/src/model/query.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:dart_kenall/src/model/address.dart';
@@ -11,7 +12,7 @@ part 'search_address_response.g.dart';
 )
 class SearchAddressResponse {
   final String version;
-  final String query;
+  final Query query;
   final int count;
   final int offset;
   final int limit;
