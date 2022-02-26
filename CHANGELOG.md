@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Official update.
+- Support free text address search.
+
 ## 1.2.0
 
 - Refactor http request interface.
