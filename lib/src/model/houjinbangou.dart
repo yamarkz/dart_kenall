@@ -21,6 +21,11 @@ class Houjinbangou {
   final String prefectureName;
   final String cityName;
   final String streetNumber;
+  final String? town;
+  final String? kyotoStreet;
+  final String? blockLotNum;
+  final String? building;
+  final String? floorRoom;
   final String? addressImageId;
   final String jisx0402;
   final String postCode;
@@ -52,6 +57,11 @@ class Houjinbangou {
     required this.prefectureName,
     required this.cityName,
     required this.streetNumber,
+    required this.town,
+    required this.kyotoStreet,
+    required this.blockLotNum,
+    required this.building,
+    required this.floorRoom,
     required this.addressImageId,
     required this.jisx0402,
     required this.postCode,

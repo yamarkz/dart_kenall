@@ -50,8 +50,8 @@ void main() {
           GetAddressRequest(postalCode: 'dummy'),
         );
         expect(response.addresses.length, 1);
-        expect(response.version, '2021-06-30');
-        expect(response.addresses[0].jisx0402, '13101');
+        expect(response.version, '2022-01-31');
+        expect(response.addresses[0].jisx0402, '13104');
       });
 
       test('throw Exception if invalid params', () async {
@@ -106,9 +106,9 @@ void main() {
 
         final response = await kenallClient!
             .searchAddress(SearchAddressRequest(query: 'dummy'));
-        expect(response.addresses.length, 3);
-        expect(response.version, '2021-06-30');
-        expect(response.addresses[0].jisx0402, '14131');
+        expect(response.addresses.length, 1);
+        expect(response.version, '2022-01-31');
+        expect(response.addresses[0].jisx0402, '13101');
       });
 
       test('throw Exception if invalid params', () async {
@@ -126,7 +126,7 @@ void main() {
         } catch (error) {
           expect(
             error.toString(),
-            'Kenall Error: 404 not found | uri: https://api-beta.example.com/v1/postalcode/?q=dummy&offset=0&limit=50&facet',
+            'Kenall Error: 404 not found | uri: https://api.example.com/v1/postalcode/?q=dummy&t&offset=0&limit=50&facet',
           );
         }
       });

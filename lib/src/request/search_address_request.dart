@@ -7,6 +7,7 @@ class SearchAddressRequest implements RequestBase {
   @override
   Map<String, String> get parameters => {
         'q': query,
+        't': text,
         'offset': offset.toString(),
         'limit': limit.toString(),
         'facet': facet,
@@ -16,17 +17,23 @@ class SearchAddressRequest implements RequestBase {
   String get path => '/postalcode/';
 
   @override
-  bool get isBeta => true;
+  bool get isBeta => false;
 
   final String query;
+  final String text;
   final int offset;
   final int limit;
   final String facet;
 
   SearchAddressRequest({
-    required this.query,
+    this.query = '',
+    this.text = '',
     this.offset = 0,
     this.limit = 50,
     this.facet = '',
-  });
+  }) {
+    if (query.isEmpty && text.isEmpty) {
+      throw ArgumentError('query and text are empty');
+    }
+  }
 }

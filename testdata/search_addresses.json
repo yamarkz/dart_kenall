@@ -1,98 +1,44 @@
 {
-    "version": "2021-06-30",
-    "query": "神奈川県 AND 日本郵便",
-    "count": 3,
-    "offset": 0,
-    "limit": 100,
-    "facets": [
-      [
-        "/神奈川県", 3
-      ]
-    ],
-    "data": [
-      {
-        "jisx0402": "14131",
-        "old_code": "210",
-        "postal_code": "2108797",
-        "prefecture_kana": "",
-        "city_kana": "",
-        "town_kana": "",
-        "town_kana_raw": "",
-        "prefecture": "神奈川県",
-        "city": "川崎市川崎区",
-        "town": "榎町",
-        "koaza": "",
-        "kyoto_street": "",
-        "building": "",
-        "floor": "",
-        "town_partial": false,
-        "town_addressed_koaza": false,
-        "town_chome": false,
-        "town_multi": false,
-        "town_raw": "榎町",
-        "corporation": {
-          "name": "日本郵便　株式会社　南関東支社",
-          "name_kana": "ニツポンユウビン　カブシキガイシヤ　ミナミカントウシシヤ",
-          "block_lot": "１－２",
-          "post_office": "川崎港",
-          "code_type": 0
-        }
-      },
-      {
-        "jisx0402": "14131",
-        "old_code": "210",
-        "postal_code": "2108796",
-        "prefecture_kana": "",
-        "city_kana": "",
-        "town_kana": "",
-        "town_kana_raw": "",
-        "prefecture": "神奈川県",
-        "city": "川崎市川崎区",
-        "town": "榎町",
-        "koaza": "",
-        "kyoto_street": "",
-        "building": "",
-        "floor": "",
-        "town_partial": false,
-        "town_addressed_koaza": false,
-        "town_chome": false,
-        "town_multi": false,
-        "town_raw": "榎町",
-        "corporation": {
-          "name": "日本郵便　株式会社　神奈川監査室",
-          "name_kana": "ニツポンユウビン　カブシキガイシヤ　カナガワカンサシツ",
-          "block_lot": "１－２",
-          "post_office": "川崎港",
-          "code_type": 0
-        }
-      },
-      {
-        "jisx0402": "14131",
-        "old_code": "210",
-        "postal_code": "2108793",
-        "prefecture_kana": "",
-        "city_kana": "",
-        "town_kana": "",
-        "town_kana_raw": "",
-        "prefecture": "神奈川県",
-        "city": "川崎市川崎区",
-        "town": "榎町",
-        "koaza": "",
-        "kyoto_street": "",
-        "building": "",
-        "floor": "",
-        "town_partial": false,
-        "town_addressed_koaza": false,
-        "town_chome": false,
-        "town_multi": false,
-        "town_raw": "榎町",
-        "corporation": {
-          "name": "日本郵便　株式会社　南関東支社　郵便事業本部　（三種）",
-          "name_kana": "ニホンユウビン　カブシキガイシヤ　ミナミカントウシシヤ　ユウビンジギヨウホンブ　（サンシユ）",
-          "block_lot": "１－２",
-          "post_office": "川崎港",
-          "code_type": 0
-        }
-      }
-    ]
-  }
+  "version": "2022-01-31",
+  "data": [
+    {
+      "jisx0402": "13101",
+      "old_code": "102",
+      "postal_code": "1020083",
+      "prefecture_kana": "トウキョウト",
+      "city_kana": "チヨダク",
+      "town_kana": "コウジマチ",
+      "town_kana_raw": "コウジマチ",
+      "prefecture": "東京都",
+      "city": "千代田区",
+      "town": "麹町",
+      "koaza": "",
+      "kyoto_street": "",
+      "building": "",
+      "floor": "",
+      "town_partial": false,
+      "town_addressed_koaza": false,
+      "town_chome": true,
+      "town_multi": false,
+      "town_raw": "麹町",
+      "corporation": null
+    }
+  ],
+  "query": {
+    "q": null,
+    "t": "東京都千代田区麹町三丁目12-14麹町駅前ヒルトップ8F",
+    "prefecture": "東京都",
+    "county": null,
+    "city": "千代田区",
+    "city_ward": null,
+    "town": "麹町",
+    "kyoto_street": null,
+    "block_lot_num": "3-12-14",
+    "building": "麹町駅前ヒルトップ",
+    "floor_room": "8F"
+  },
+  "count": 1280,
+  "offset": 0,
+  "limit": 1,
+  "facets": null
+}
