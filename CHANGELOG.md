@@ -1,3 +1,8 @@
+## 1.4.0
+
+- Official update.
+- Support national holiday api.
+
 ## 1.3.0
 
 - Official update.
