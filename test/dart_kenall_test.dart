@@ -219,6 +219,40 @@ void main() {
       });
     });
 
+    group('getHolidays', () {
+      test('returns normally', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json = await File('./testdata/holidays.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        expect(() async {
+          await kenallClient!.getHolidays(GetHolidaysRequest());
+        }, returnsNormally);
+      });
+
+      test('response object is valid', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json = await File('./testdata/holidays.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        final response = await kenallClient!.getHolidays(GetHolidaysRequest());
+        expect(response.holidays.first.title, '元日');
+        expect(response.holidays.first.date, '2022-01-01');
+        expect(response.holidays.first.dayOfWeek, 6);
+        expect(response.holidays.first.dayOfWeekText, 'saturday');
+      });
+    });
+
     group('getHoujinbangou', () {
       test('returns normally', () async {
         Future<http.Response> httpResponse(http.Request request) async {
