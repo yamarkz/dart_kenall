@@ -26,6 +26,7 @@ Recommended that you use it for simple applications.
 - [x] `GET /v1/whoami`
 - [x] `GET /v1/houjinbangou/{法人番号}`
 - [x] `GET /v1/houjinbangou/?q=...&offset=...&limit=...&facet=...`
+- [x] `GET /v1/holidays?year=...&from=...&to=...`
 
 ## Usage
 
