@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:dart_kenall/src/request/get_holidays_request.dart';
 import 'package:http/testing.dart';
 import 'package:mockito/annotations.dart';
 import 'package:test/expect.dart';
