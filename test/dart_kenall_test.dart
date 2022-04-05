@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dart_kenall/src/request/get_holidays_request.dart';
 import 'package:http/testing.dart';
 import 'package:mockito/annotations.dart';
 import 'package:test/expect.dart';
@@ -216,6 +217,40 @@ void main() {
         final response = await kenallClient!.getWhoami(GetWhoamiRequest());
         expect(response.remoteAddr.type, 'v4');
         expect(response.remoteAddr.address, '0.0.0.0');
+      });
+    });
+
+    group('getHolidays', () {
+      test('returns normally', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json = await File('./testdata/holidays.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        expect(() async {
+          await kenallClient!.getHolidays(GetHolidaysRequest());
+        }, returnsNormally);
+      });
+
+      test('response object is valid', () async {
+        Future<http.Response> httpResponse(http.Request request) async {
+          final json = await File('./testdata/holidays.json').readAsString();
+          return http.Response(json, HttpStatus.ok, headers: {
+            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
+          });
+        }
+
+        kenallClient = KenallClient(config, MockClient(httpResponse));
+
+        final response = await kenallClient!.getHolidays(GetHolidaysRequest());
+        expect(response.holidays.first.title, '元日');
+        expect(response.holidays.first.date, '2022-01-01');
+        expect(response.holidays.first.dayOfWeek, 6);
+        expect(response.holidays.first.dayOfWeekText, 'saturday');
       });
     });
 

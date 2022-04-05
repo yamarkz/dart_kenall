@@ -1,3 +1,5 @@
+import 'package:dart_kenall/src/request/get_holidays_request.dart';
+import 'package:dart_kenall/src/response/get_holidays_response.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -45,6 +47,11 @@ class KenallClient {
   Future<GetWhoamiResponse> getWhoami(GetWhoamiRequest request) async {
     final json = await _httpClient.send(request);
     return GetWhoamiResponse.fromJson(json);
+  }
+
+  Future<GetHolidaysResponse> getHolidays(GetHolidaysRequest request) async {
+    final json = await _httpClient.send(request);
+    return GetHolidaysResponse.fromJson(json);
   }
 
   Future<GetHoujinBangouResponse> getHoujinbangou(
